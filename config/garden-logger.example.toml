@@ -1,0 +1,44 @@
+[device]
+id = "garden-node-01"
+
+[storage]
+database_path = "/var/lib/garden-logger/garden.db"
+
+[cycle]
+interval_seconds = 60
+network_timeout_seconds = 12
+time_sync_timeout_seconds = 10
+http_timeout_seconds = 12
+max_uploads = 10
+
+[network]
+interface = "wlan0"
+
+[telemetry]
+enabled = false
+api_url = "https://api.example.com/v1/readings"
+# Prefer GARDEN_LOGGER_API_BEARER_TOKEN in /etc/garden-logger/secrets.env.
+bearer_token = ""
+
+[hardware]
+bme_addresses = ["0x77", "0x76"]
+ads1115_address = "0x48"
+light_channel = 0
+thermistor_channel = 1
+battery_channel = 2
+analog_samples = 10
+analog_sample_delay_seconds = 0.005
+
+[calibration]
+sensor_supply_v = 3.3
+thermistor_nominal_ohms = 10000
+thermistor_nominal_c = 25
+thermistor_beta = 3950
+thermistor_series_ohms = 10000
+battery_divider_top_ohms = 100000
+battery_divider_bottom_ohms = 100000
+
+# Record meter-derived correction factors in docs/calibration-log.md.
+light_voltage_scale = 1.0
+thermistor_voltage_scale = 1.0
+battery_voltage_scale = 1.0

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:garden-logger:schema:garden.telemetry.v1",
+  "title": "Garden telemetry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "event_id",
+    "device_id",
+    "sequence_number",
+    "observed_at",
+    "measurements",
+    "wifi_rssi",
+    "status_bits",
+    "firmware_version"
+  ],
+  "properties": {
+    "schema": { "const": "garden.telemetry.v1" },
+    "event_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "device_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[A-Za-z0-9._-]+$"
+    },
+    "sequence_number": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "observed_at": {
+      "oneOf": [
+        { "type": "string", "format": "date-time", "pattern": "Z$" },
+        { "type": "null" }
+      ]
+    },
+    "measurements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "air_temp_f",
+        "humidity_pct",
+        "pressure_hpa",
+        "soil_temp_f",
+        "light_pct",
+        "battery_v"
+      ],
+      "properties": {
+        "air_temp_f": { "$ref": "#/$defs/temperatureF" },
+        "humidity_pct": { "$ref": "#/$defs/humidityPct" },
+        "pressure_hpa": { "$ref": "#/$defs/pressureHpa" },
+        "soil_temp_f": { "$ref": "#/$defs/temperatureF" },
+        "light_pct": { "$ref": "#/$defs/lightPct" },
+        "battery_v": { "$ref": "#/$defs/batteryV" }
+      }
+    },
+    "wifi_rssi": { "type": ["integer", "null"], "minimum": -127, "maximum": 0 },
+    "status_bits": { "type": "integer", "minimum": 0, "maximum": 65535 },
+    "firmware_version": { "type": "string", "minLength": 1, "maxLength": 64 }
+  },
+  "$defs": {
+    "temperatureF": { "type": ["number", "null"], "minimum": -40, "maximum": 185 },
+    "humidityPct": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+    "pressureHpa": { "type": ["number", "null"], "minimum": 300, "maximum": 1100 },
+    "lightPct": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+    "batteryV": { "type": ["number", "null"], "minimum": 0, "maximum": 5 }
+  }
+}

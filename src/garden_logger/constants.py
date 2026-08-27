@@ -1,0 +1,14 @@
+"""Stable telemetry constants shared with the ESP8266 implementation."""
+
+SCHEMA_NAME = "garden.telemetry.v1"
+FIRMWARE_VERSION = "3.0.0-rpi"
+
+ERR_BME = 0x0001
+ERR_SOIL = 0x0002
+ERR_LIGHT = 0x0004
+ERR_BATTERY = 0x0008
+ERR_ADS1115 = 0x0010
+ERR_TIME = 0x0020
+ERR_STORAGE = 0x0040
+ERR_WIFI = 0x0080
+WARN_TIME_ESTIMATED = 0x0100

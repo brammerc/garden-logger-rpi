@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "garden-logger-rpi"
+version = "1.0.0"
+description = "Durable Raspberry Pi garden telemetry logger"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "adafruit-blinka>=8.50,<10",
+  "adafruit-circuitpython-ads1x15>=2.4,<4",
+  "adafruit-circuitpython-bme280>=2.6,<4",
+]
+
+[project.optional-dependencies]
+test = [
+  "jsonschema[format]>=4.20,<5",
+  "pytest>=8,<10",
+]
+
+[project.scripts]
+garden-logger = "garden_logger.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+pythonpath = ["src"]

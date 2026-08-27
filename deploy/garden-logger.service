@@ -1,0 +1,25 @@
+[Unit]
+Description=Garden logger observation cycle
+Documentation=file:/opt/garden-logger/README.md
+Wants=network-online.target time-sync.target
+After=network-online.target time-sync.target
+
+[Service]
+Type=oneshot
+User=garden-logger
+Group=garden-logger
+SupplementaryGroups=i2c
+EnvironmentFile=-/etc/garden-logger/secrets.env
+ExecStart=/opt/garden-logger/.venv/bin/garden-logger --config /etc/garden-logger/config.toml cycle
+TimeoutStartSec=55
+StateDirectory=garden-logger
+StateDirectoryMode=0750
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ReadWritePaths=/var/lib/garden-logger

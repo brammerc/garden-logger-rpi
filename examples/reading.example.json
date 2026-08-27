@@ -1,0 +1,18 @@
+{
+  "schema": "garden.telemetry.v1",
+  "event_id": "garden-node-01-4a17c2e1-42",
+  "device_id": "garden-node-01",
+  "sequence_number": 42,
+  "observed_at": "2026-08-27T01:30:00Z",
+  "measurements": {
+    "air_temp_f": 78.44,
+    "humidity_pct": 61.25,
+    "pressure_hpa": 1009.31,
+    "soil_temp_f": 72.18,
+    "light_pct": 44.7,
+    "battery_v": 3.982
+  },
+  "wifi_rssi": -67,
+  "status_bits": 0,
+  "firmware_version": "3.0.0-rpi"
+}
